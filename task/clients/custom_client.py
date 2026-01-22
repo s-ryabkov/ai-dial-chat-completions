@@ -13,7 +13,7 @@ class DialClient:
     _api_key: str
 
     def __init__(self, deployment_name: str):
-        super().__init__(deployment_name)
+        super().__init__()
         self._endpoint = DIAL_ENDPOINT + f"/openai/deployments/{deployment_name}/chat/completions"
 
     def get_completion(self, messages: list[Message]) -> Message:
