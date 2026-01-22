@@ -9,7 +9,7 @@ from task.models.role import Role
 import pprint
 
 
-async def start(stream: bool) -> None:
+async def start(stream: bool, custom_client: bool) -> None:
     #TODO:
     # 1.1. Create DialClient 
     # (you can get available deployment_name via https://ai-proxy.lab.epam.com/openai/models
@@ -39,11 +39,17 @@ async def start(stream: bool) -> None:
         conversation.add_message(Message(role=Role.USER, content=user_message))
     # 7. If `stream` param is true -> call DialClient#stream_completion()
     #    else -> call DialClient#get_completion()
-        if stream:
-            response = await dial_client.stream_completion(conversation.get_messages())
+        if custom_client:
+            if stream:
+                response = await custom_dial_client.stream_completion(conversation.get_messages())
+            else:
+                response = custom_dial_client.get_completion(conversation.get_messages())
         else:
-            response = dial_client.get_completion(conversation.get_messages())
-    # 8. Add generated message to history
+            if stream:
+                response = await dial_client.stream_completion(conversation.get_messages())
+            else:
+                response = dial_client.get_completion(conversation.get_messages())
+        # 8. Add generated message to history
         conversation.add_message(Message(role=Role.AI, content=response.content))
         # 9. Print response content
         print("AI: ", response.content)
@@ -57,5 +63,5 @@ async def start(stream: bool) -> None:
 
 
 asyncio.run(
-    start(True)
+    start(stream=True, custom_client=True)
 )
