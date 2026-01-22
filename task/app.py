@@ -10,8 +10,7 @@ import pprint
 
 
 async def start(stream: bool, custom_client: bool) -> None:
-    #TODO:
-    # 1.1. Create DialClient 
+    # 1.1. Create DialClient
     # (you can get available deployment_name via https://ai-proxy.lab.epam.com/openai/models
     #  you can import Postman collection to make a request, file in the project root `dial-basics.postman_collection.json`
     #  don't forget to add your API_KEY)

@@ -10,7 +10,6 @@ class DialClient(BaseClient):
 
     def __init__(self, deployment_name: str):
         super().__init__(deployment_name)
-        #TODO:
         # Documentation: https://pypi.org/project/aidial-client/ (here you can find how to create and use these clients)
         # 1. Create Dial client
         self.dial = Dial(api_key=self._api_key, base_url=DIAL_ENDPOINT)
@@ -18,7 +17,6 @@ class DialClient(BaseClient):
         self.async_dial = AsyncDial(api_key=self._api_key, base_url=DIAL_ENDPOINT)
 
     def get_completion(self, messages: list[Message]) -> Message:
-        #TODO:
         # 1. Create chat completions with client
         #    Hint: to unpack messages you can use the `to_dict()` method from Message object
         msgs = [message.to_dict() for message in messages]
@@ -35,7 +33,6 @@ class DialClient(BaseClient):
         
 
     async def stream_completion(self, messages: list[Message]) -> Message:
-        #TODO:
         # 1. Create chat completions with async client
         #    Hint: don't forget to add `stream=True` in call.
         msgs = [message.to_dict() for message in messages]

@@ -34,7 +34,6 @@ class DialClient:
         self._endpoint = DIAL_ENDPOINT + f"/openai/deployments/{deployment_name}/chat/completions"
 
     def get_completion(self, messages: list[Message]) -> Message:
-        #TODO:
         # Take a look at README.md of how the request and regular response are looks like!
         # 1. Create headers dict with api-key and Content-Type
         headers = {
@@ -64,7 +63,6 @@ class DialClient:
         return Message(role=Role.AI, content=content)
 
     async def stream_completion(self, messages: list[Message]) -> Message:
-        #TODO:
         # Take a look at README.md of how the request and streamed response chunks are looks like!
         # 1. Create headers dict with api-key and Content-Type
         headers = {
